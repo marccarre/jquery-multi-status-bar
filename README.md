@@ -2,6 +2,7 @@ jquery-multi-status-bar
 =======================
 
 The ideal bar to monitor the status of multiple objects.
+
 (Originally hosted at: http://code.google.com/p/jquery-multi-status-bar/)
 
 ----
@@ -18,6 +19,8 @@ The ideal bar to monitor the status of multiple objects.
   - Add unit tests 
 
 
+
+
 - DONE:
   - Handle payload containing 0 by hiding the category in the bar
-  - Handle payload containing a total of 0, by showing N/A 
+  - Handle payload containing a total of 0, by showing N/A
