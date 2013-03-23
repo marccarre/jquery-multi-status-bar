@@ -1,0 +1,140 @@
+/*!
+ * jQuery Multi Status Bar plugin v1.0
+ * http://www.marccarre.net
+ * Licensed under the MIT license.
+ * Copyright (c) 2012, Marc CARRE
+ *
+ * Permission is hereby granted, free of charge, to any person
+ * obtaining a copy of this software and associated documentation
+ * files (the "Software"), to deal in the Software without
+ * restriction, including without limitation the rights to use,
+ * copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the
+ * Software is furnished to do so, subject to the following
+ * conditions:
+ * 
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+ * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+ * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+ * OTHER DEALINGS IN THE SOFTWARE.
+ */
+
+(function($) {
+	$.widget("ui.multistatusbar", {
+		
+		options : {
+			width : 200,
+			payload : null,
+			colors : null
+		},
+
+		_create : function() {
+			this._setDefaultValuesIfEmpty();
+			
+			// Calculate total number of objects and their width:
+			var objectsTotal = this._getTotalNumberOfObjects();
+			var objectWidth = (objectsTotal == 0) ? this.options.width : this.options.width / objectsTotal;
+			
+			// Create widget:
+			var bar = this._createStatusBar();
+			var legend = this._createLegend();
+			this._populate(objectsTotal, objectWidth, bar.row, legend.table); // Populate with values and associated colors.
+			this._hookEvents(bar.statusBar, legend.legend);
+		},
+		
+		_setDefaultValuesIfEmpty : function() {
+			if (this.options.payload == null) {
+				this.options.payload = {"NEW":2,"IN PROGRESS":5,"FINISHED":3};
+			}
+			
+			if (this.options.colors == null) {
+				this.options.colors = [ "#D5E5FF", "#FFFF84", "#00CC33" ];
+			}
+		},
+		
+		_getTotalNumberOfObjects : function() {
+			var count = 0;
+			for (key in this.options.payload) { 
+				count += this.options.payload[key];
+			}
+			return count;
+		},
+		
+		_createStatusBar : function() {
+			var statusBar = $("<table width='" + this.options.width + "px' cellpadding='0' cellspacing='0'></table>");
+			statusBar.addClass('ui-widget').addClass('ui-state-default').addClass('ui-corner-all').addClass('ui-multistatusbar');
+			
+			var row = $("<tr></tr>");
+			statusBar.append(row);
+			
+			this.element.append(statusBar); // Add to container.
+			
+			return {statusBar:statusBar, row:row}; // Return the status bar to hook events, and the row to populate it.
+		},
+		
+		_createLegend : function() {
+			var legend = $("<div></div>");
+			legend.addClass('ui-widget').addClass('ui-state-default').addClass('ui-corner-all').addClass('ui-multistatusbar-legend');
+			
+			var table = $("<table></table>");
+			legend.append(table);
+			
+			this.element.append(legend); // Add to container.
+			legend.hide(); // Hide legend by default:
+			
+			return {legend:legend, table:table}; // Return the legend to hook events, and the table to populate it.
+		},
+		
+		_populate : function(objectsTotal, widthPerObject, bar, legend) {
+			var colors = this.options.colors;
+			var payload = this.options.payload;
+			
+			if (objectsTotal == 0) {
+				this._populateBar(bar, "#DDDDDD", "N/A", this.options.width);
+				var i = 0;
+				for (key in payload) {
+					this._populateLegend(legend, colors[i], key);
+					i++;
+				}
+			} else {
+				var value = null;
+				var color = null;
+				var i = 0;
+				for (key in payload) {
+					value = payload[key];
+					color = colors[i];
+					if (value > 0) { // Only add section in the bar if value is positive
+						this._populateBar(bar, color, value, value * widthPerObject);
+					}
+					this._populateLegend(legend, color, key);
+					i++;
+				}				
+			}
+		},
+		
+		_populateBar : function(bar, color, value, width) {
+			bar.append($("<td style='background-color: " + color + "; width:" + width + "px;'>"+ value +"</td>"));
+		},
+		
+		_populateLegend : function(legend, color, text) {
+			legend.append("<tr><td><div class='ui-multistatusbar-legend-icon' style='background-color: " + color + ";'></div></td><td>" + text + "</td></tr>");
+		},
+		
+		_hookEvents : function(statusBar, legend) {
+			statusBar.mouseover(function(event) {
+				legend.show();
+            });
+			statusBar.mouseleave(function(event) {
+            	legend.hide();
+            });
+		}
+	});
+
+})(jQuery);
