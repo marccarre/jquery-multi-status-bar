@@ -2,8 +2,10 @@ jquery-multi-status-bar
 =======================
 
 The ideal bar to monitor the status of multiple objects.
+(Originally hosted at: http://code.google.com/p/jquery-multi-status-bar/)
 
 ----
+
 - TODO:
   - Option to show/hide numbers in the bar
   - Option to show/hide numbers in the legend
