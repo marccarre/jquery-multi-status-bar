@@ -15,6 +15,7 @@ The ideal bar to monitor the status of multiple objects.
   - Add events
   - Add unit tests 
 
+
 - DONE:
   - Handle payload containing 0 by hiding the category in the bar
   - Handle payload containing a total of 0, by showing N/A 
