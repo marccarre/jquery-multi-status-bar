@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <!-- Below is not related to the setup of the jQuery multi-status bar plugin and can be skipped/ignored. -->
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <meta charset="utf-8"/>
+    <title>jQuery multi-status bar demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" rel="stylesheet"/>
+    <link href="http://twitter.github.com/bootstrap/assets/js/google-code-prettify/prettify.css" rel="stylesheet"/>
+    <style type="text/css">
+        body {
+            padding-top: 60px;
+            padding-bottom: 40px;
+        }
+    </style>
+    <link href="http://twitter.github.com/bootstrap/assets/css/bootstrap-responsive.css" rel="stylesheet"/>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    <script src="http://twitter.github.com/bootstrap/assets/js/html5shiv.js"></script>
+    <![endif]-->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://twitter.github.com/bootstrap/assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://twitter.github.com/bootstrap/assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://twitter.github.com/bootstrap/assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="http://twitter.github.com/bootstrap/assets/ico/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" href="http://twitter.github.com/bootstrap/assets/ico/favicon.png">
+
+
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <!-- IMPORTANT: Setup of the jQuery multi-status bar plugin. -->
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <link type="text/css" href="../src/jquery-ui-multistatusbar.css" rel="stylesheet"/>
+
+    <script type="text/javascript" src="../lib/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="../lib/jquery-ui-1.10.2.min.js"></script>
+    <script type="text/javascript" src="../src/jquery-ui-multistatusbar.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $("#bar1").multistatusbar();
+
+            $("#bar2").multistatusbar({
+                payload: {"NEW": 2, "IN PROGRESS": 5, "FINISHED": 10},
+                colors: ["#D5E5FF", "#FFFF84", "#00CC33"]
+            });
+
+            $("#bar3").multistatusbar({
+                width: 300,
+                payload: {"NEW": 2, "PREPROCESSING": 1, "PREPROCESSED": 1, "SUBMITTING": 2, "SUBMITTED": 1, "RUNNING": 7, "COMPLETED": 7, "FAILED": 1, "CANCELLED": 1},
+                colors: [ "#D5E5FF", "#80B3FF", "#2A7FFF", "#44B4D5", "#03EBA6", "#FFFF84", "#00CC33", "#FF4E00", "#979797" ]
+            });
+
+            $("#bar4").multistatusbar({
+                payload: {"NEW": 0, "IN PROGRESS": 5, "FINISHED": 10},
+                colors: ["#D5E5FF", "#FFFF84", "#00CC33"]
+            });
+        });
+    </script>
+</head>
+
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="brand" href="https://github.com/marccarre/jquery-multi-status-bar">jQuery multi-status bar plugin @ GitHub</a>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="hero-unit">
+        <h1>jQuery multi-status bar plugin</h1>
+        <p>The ideal bar to monitor the status of multiple objects.</p>
+    </div>
+
+    <div class="row">
+        <div class="span12">
+            <table class="table table-striped">
+                <tr>
+                    <th>#</th>
+                    <th>Comment</th>
+                    <th>Source code</th>
+                    <th>Result</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td><b>Default</b> multi-status bar.</td>
+                    <td>
+                        <pre class="prettyprint linenums">$("#bar1").multistatusbar();</pre>
+                    </td>
+                    <td>
+                        <div id="bar1"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Customized <b>values</b>, <b> names</b> and <b>colors</b>.<br/>&nbsp;<br/>Legend appears when
+                        you mouse over.
+                    </td>
+                    <td><pre class="prettyprint linenums">$("#bar2").multistatusbar({
+  payload: {"NEW": 2, "IN PROGRESS": 5, "FINISHED": 10},
+  colors: ["#D5E5FF", "#FFFF84", "#00CC33"]
+});</pre>
+                    </td>
+                    <td>
+                        <div id="bar2"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Customized <b>values</b>, <b> names</b>, <b>colors</b> and <b>size</b>.<br/>&nbsp;<br/>Legend
+                        appears when you mouse over.
+                    </td>
+                    <td><pre class="prettyprint linenums">$("#bar3").multistatusbar({
+  width: 300,
+  payload: {"NEW":2,"PREPROCESSING":1,"PREPROCESSED":1,"SUBMITTING":2,"SUBMITTED":1,"RUNNING":7,"COMPLETED":7,"FAILED":1,"CANCELLED":1},
+  colors: [ "#D5E5FF", "#80B3FF", "#2A7FFF", "#44B4D5", "#03EBA6", "#FFFF84", "#00CC33", "#FF4E00", "#979797" ]
+});</pre>
+                    </td>
+                    <td>
+                        <div id="bar3"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Categories containing '<b>zeros</b>', e.g. 'NEW', are <b>not</b> shown.<br/>&nbsp;<br/>Legend
+                        appears when you mouse over.
+                    </td>
+                    <td><pre class="prettyprint linenums">$("#bar4").multistatusbar({
+  payload: {"NEW": 0, "IN PROGRESS": 5, "FINISHED": 10},
+  colors: ["#D5E5FF", "#FFFF84", "#00CC33"]
+});</pre>
+                    </td>
+                    <td>
+                        <div id="bar4"></div>
+                    </td>
+                </tr>
+            </table>
+        </div> <!-- /span12 -->
+    </div> <!-- /row -->
+
+    <hr />
+
+    <footer>
+        <p>&copy; Marc CARRE - 2013</p>
+    </footer>
+
+</div> <!-- /container -->
+
+<!-- Bootstrap's javascript ================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-transition.js"></script>
+<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-alert.js"></script>
+<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-modal.js"></script>
+<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-dropdown.js"></script>
+<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-scrollspy.js"></script>
+<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-tab.js"></script>
+<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-tooltip.js"></script>
+<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-popover.js"></script>
+<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-button.js"></script>
+<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-collapse.js"></script>
+<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-carousel.js"></script>
+<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-typeahead.js"></script>
+<script src="http://twitter.github.com/bootstrap/assets/js/google-code-prettify/prettify.js"></script>
+<script>
+    !function ($) {
+        $(function () {
+            window.prettyPrint && prettyPrint()
+        })
+    }(window.jQuery)
+</script>
+
+</body>
+</html>

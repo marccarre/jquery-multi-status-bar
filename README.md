@@ -17,6 +17,7 @@ Current features:
 ----
 
 Backlog:
+- Option to show/hide the legend
 - Option to show/hide numbers in the bar
 - Option to show/hide numbers in the legend
 - Harmonize width differences caused by ceiling/rounding errors
