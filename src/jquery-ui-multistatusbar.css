@@ -15,7 +15,7 @@
  * limitations under the License.
  ******************************************************************************/
 
-.ui-multistatusbar { text-align: center; cursor: pointer; border-spacing: 0px; border-collapse: collapse; }
+.ui-multistatusbar { text-align: center; border-spacing: 0px; border-collapse: collapse; }
 .ui-multistatusbar td { margin: 0; padding: 0; }
 
 .ui-multistatusbar-legend { margin-top: 1px; display:block; position:absolute; z-index:99999; }

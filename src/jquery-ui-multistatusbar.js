@@ -15,48 +15,36 @@
  * limitations under the License.
  ******************************************************************************/
 
-(function($) {
-	$.widget("ui.multistatusbar", {
-		
-		options : {
-			width : 200,
-			payload : null,
-			colors : null
+(function($, undefined) {
+    $.widget("ui-marccarre.multistatusbar", {
+		version: "1.1.0",
+		options: {
+			width: 200,
+			payload: {},
+			colors: []
 		},
 
-		_create : function() {
-			this._setDefaultValuesIfEmpty();
-			
+		_create: function() {
 			// Calculate total number of objects and their width:
-			var objectsTotal = this._getTotalNumberOfObjects();
-			var objectWidth = (objectsTotal == 0) ? this.options.width : this.options.width / objectsTotal;
+			var totalNumObjects = this._sumValues(this.options.payload);
+			var objectWidth = (totalNumObjects == 0) ? this.options.width : this.options.width / totalNumObjects;
 			
 			// Create widget:
 			var bar = this._createStatusBar();
 			var legend = this._createLegend();
-			this._populate(objectsTotal, objectWidth, bar.row, legend.table); // Populate with values and associated colors.
+			this._populate(totalNumObjects, objectWidth, bar.row, legend.table); // Populate with values and associated colors.
 			this._hookEvents(bar.statusBar, legend.legend);
 		},
 		
-		_setDefaultValuesIfEmpty : function() {
-			if (this.options.payload == null) {
-				this.options.payload = {"NEW":2,"IN PROGRESS":5,"FINISHED":3};
+		_sumValues: function(dict) {
+			var sum = 0;
+			for (var key in dict) {
+				sum += dict[key];
 			}
-			
-			if (this.options.colors == null) {
-				this.options.colors = [ "#D5E5FF", "#FFFF84", "#00CC33" ];
-			}
+			return sum;
 		},
 		
-		_getTotalNumberOfObjects : function() {
-			var count = 0;
-			for (key in this.options.payload) { 
-				count += this.options.payload[key];
-			}
-			return count;
-		},
-		
-		_createStatusBar : function() {
+		_createStatusBar: function() {
 			var statusBar = $("<table width='" + this.options.width + "px' cellpadding='0' cellspacing='0'></table>");
 			statusBar.addClass('ui-widget').addClass('ui-state-default').addClass('ui-corner-all').addClass('ui-multistatusbar');
 			
@@ -68,7 +56,7 @@
 			return {statusBar:statusBar, row:row}; // Return the status bar to hook events, and the row to populate it.
 		},
 		
-		_createLegend : function() {
+		_createLegend: function() {
 			var legend = $("<div></div>");
 			legend.addClass('ui-widget').addClass('ui-state-default').addClass('ui-corner-all').addClass('ui-multistatusbar-legend');
 			
@@ -81,14 +69,14 @@
 			return {legend:legend, table:table}; // Return the legend to hook events, and the table to populate it.
 		},
 		
-		_populate : function(objectsTotal, widthPerObject, bar, legend) {
+		_populate: function(objectsTotal, widthPerObject, bar, legend) {
 			var colors = this.options.colors;
 			var payload = this.options.payload;
 			
 			if (objectsTotal == 0) {
 				this._populateBar(bar, "#DDDDDD", "N/A", this.options.width);
 				var i = 0;
-				for (key in payload) {
+				for (var key in payload) {
 					this._populateLegend(legend, colors[i], key);
 					i++;
 				}
@@ -96,7 +84,7 @@
 				var value = null;
 				var color = null;
 				var i = 0;
-				for (key in payload) {
+				for (var key in payload) {
 					value = payload[key];
 					color = colors[i];
 					if (value > 0) { // Only add section in the bar if value is positive
@@ -108,15 +96,15 @@
 			}
 		},
 		
-		_populateBar : function(bar, color, value, width) {
+		_populateBar: function(bar, color, value, width) {
 			bar.append($("<td style='background-color: " + color + "; width:" + width + "px;'>"+ value +"</td>"));
 		},
 		
-		_populateLegend : function(legend, color, text) {
+		_populateLegend: function(legend, color, text) {
 			legend.append("<tr><td><div class='ui-multistatusbar-legend-icon' style='background-color: " + color + ";'></div></td><td>" + text + "</td></tr>");
 		},
 		
-		_hookEvents : function(statusBar, legend) {
+		_hookEvents: function(statusBar, legend) {
 			statusBar.mouseover(function(event) {
 				legend.show();
             });

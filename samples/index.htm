@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+
+		<link type="text/css" href="css/flick/jquery-ui-1.8.23.custom.css" rel="stylesheet" />
+		<link type="text/css" href="../src/jquery-ui-multistatusbar.css" rel="stylesheet" />
+		
+		<script type="text/javascript" src="../lib/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="../lib/jquery-ui-1.10.2.min.js"></script>
+		<script type="text/javascript" src="../src/jquery-ui-multistatusbar.js"></script>
+		
+		<script type="text/javascript">
+            $(document).ready(function() {
+			    // Default values, but you probably don't want this anyway.
+			    $(".multiStatusBar1").multistatusbar();
+
+                // Fully customized, but using default width (200px). Probably what you will use, to start with.
+                $(".multiStatusBar2").multistatusbar({
+                    payload: {"NEW":2,"PREPROCESSING":1,"PREPROCESSED":1,"SUBMITTING":2,"SUBMITTED":1,"RUNNING":7,"COMPLETED":7,"FAILED":1,"CANCELLED":1},
+                    colors: [ "#D5E5FF", "#80B3FF", "#2A7FFF", "#44B4D5", "#03EBA6", "#FFFF84", "#00CC33", "#FF4E00", "#979797" ]
+                });
+
+                // Default values, but larger status bar than by default (300px instead of 200px).
+                $(".multiStatusBar3").multistatusbar({width:300});
+		    });
+		</script>
+	</head>
+
+	<body class="ui-widget">
+		<h3>jQuery "multi status bar" plugin</h3>
+		<br/>
+		<table>
+			<tr>
+				<th>ID</th>
+				<th>Status</th>
+				<th>Comment</th>
+			</tr>
+			<tr>
+				<td>1</td>
+				<td>N/A</td>
+				<td>N/A</td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>
+					<!-- Triggers the creation of the status bar in the above Javascript -->
+					<div class="multiStatusBar1"></div>
+				</td>
+				<td><b>Default</b> multi-status bar</td>
+			</tr>
+			<tr>
+				<td>3</td>
+				<td>N/A</td>
+				<td>N/A</td>
+			</tr>
+			<tr>
+				<td>4</td>
+				<td>
+					<!-- Triggers the creation of the status bar in the above Javascript -->
+					<div class="multiStatusBar2"></div>
+				</td>
+				<td>Customized <b>values</b>, <b> names</b> and <b>colors</b></td>	
+			</tr>
+			<tr>
+				<td>5</td>
+				<td>N/A</td>
+				<td>N/A</td>
+			</tr>
+			<tr>
+				<td>6</td>
+				<td>
+					<!-- Triggers the creation of the status bar in the above Javascript -->
+					<div class="multiStatusBar3"></div>
+				</td>
+				<td><b>Default</b> multi-status bar with <b>different width</b></td>
+			</tr>
+			<tr>
+				<td>7</td>
+				<td>N/A</td>
+				<td>N/A</td>
+			</tr>
+		</table>
+	</body>
+	
+</html>
