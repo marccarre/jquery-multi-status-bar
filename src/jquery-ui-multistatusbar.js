@@ -24,16 +24,13 @@
 			colors: []
 		},
 
-		_create: function() {
-			// Calculate total number of objects and their width:
+        _create: function() {
 			var totalNumObjects = this._sumValues(this.options.payload);
-			var objectWidth = (totalNumObjects == 0) ? this.options.width : this.options.width / totalNumObjects;
-			
-			// Create widget:
-			var bar = this._createStatusBar();
-			var legend = this._createLegend();
-			this._populate(totalNumObjects, objectWidth, bar.row, legend.table); // Populate with values and associated colors.
-			this._hookEvents(bar.statusBar, legend.legend);
+            if (totalNumObjects == 0) {
+                this._createEmptyWidget();
+            } else {
+                this._createAndPopulateWidget(totalNumObjects);
+            }
 		},
 		
 		_sumValues: function(dict) {
@@ -43,8 +40,21 @@
 			}
 			return sum;
 		},
-		
-		_createStatusBar: function() {
+
+        _createEmptyWidget: function() {
+            var bar = this._createStatusBar();
+            this._populateBar(bar.row, "#DDDDDD", "N/A", this.options.width);
+        },
+
+        _createAndPopulateWidget: function(totalNumObjects) {
+            var objectWidth = this.options.width / totalNumObjects;
+            var bar = this._createStatusBar();
+            var legend = this._createLegend();
+            this._populate(totalNumObjects, objectWidth, bar.row, legend.table); // Populate with values and associated colors.
+            this._hookEvents(bar.statusBar, legend.legend);
+        },
+
+        _createStatusBar: function() {
 			var statusBar = $("<table width='" + this.options.width + "px' cellpadding='0' cellspacing='0'></table>");
 			statusBar.addClass('ui-widget').addClass('ui-state-default').addClass('ui-corner-all').addClass('ui-multistatusbar');
 			
@@ -68,35 +78,24 @@
 			
 			return {legend:legend, table:table}; // Return the legend to hook events, and the table to populate it.
 		},
-		
-		_populate: function(objectsTotal, widthPerObject, bar, legend) {
-			var colors = this.options.colors;
-			var payload = this.options.payload;
-			
-			if (objectsTotal == 0) {
-				this._populateBar(bar, "#DDDDDD", "N/A", this.options.width);
-				var i = 0;
-				for (var key in payload) {
-					this._populateLegend(legend, colors[i], key);
-					i++;
-				}
-			} else {
-				var value = null;
-				var color = null;
-				var i = 0;
-				for (var key in payload) {
-					value = payload[key];
-					color = colors[i];
-					if (value > 0) { // Only add section in the bar if value is positive
-						this._populateBar(bar, color, value, value * widthPerObject);
-					}
-					this._populateLegend(legend, color, key);
-					i++;
-				}				
-			}
-		},
-		
-		_populateBar: function(bar, color, value, width) {
+
+        _populate: function(objectsTotal, widthPerObject, bar, legend) {
+            var colors = this.options.colors;
+            var payload = this.options.payload;
+
+            var i = 0;
+            for (var key in payload) {
+                var value = payload[key];
+                var color = colors[i];
+                if (value > 0) { // Only add section in the bar if value is positive
+                    this._populateBar(bar, color, value, value * widthPerObject);
+                }
+                this._populateLegend(legend, color, key);
+                i++;
+            }
+        },
+
+        _populateBar: function(bar, color, value, width) {
 			bar.append($("<td style='background-color: " + color + "; width:" + width + "px;'>"+ value +"</td>"));
 		},
 		

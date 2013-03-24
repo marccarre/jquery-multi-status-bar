@@ -59,6 +59,7 @@ describe("jQuery multi-status bar plugin", function () {
         expect($("#multiStatusBar > table > tbody > tr").children().length).toEqual(1);
         expect($("#multiStatusBar > table > tbody > tr:first-child").text()).toEqual("N/A");
         expect($("#multiStatusBar > table > tbody > tr > td:first-child").css('background-color')).toBeColor("#DDDDDD");
+        expect($("#multiStatusBar").children("div").length).toEqual(0); // Legend should be created at all.
     });
 
     it("should show 'N/A' with a grey background when the sum of values in the provided object is zero.", function () {
@@ -71,6 +72,7 @@ describe("jQuery multi-status bar plugin", function () {
         expect($("#multiStatusBar > table > tbody > tr").children().length).toEqual(1);
         expect($("#multiStatusBar > table > tbody > tr:first-child").text()).toEqual("N/A");
         expect($("#multiStatusBar > table > tbody > tr > td:first-child").css('background-color')).toBeColor("#DDDDDD");
+        expect($("#multiStatusBar").children("div").length).toEqual(0); // Legend should be created at all.
     });
 
     it("should not show categories for which the value is zero.", function () {
