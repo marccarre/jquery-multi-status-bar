@@ -7,16 +7,16 @@ The ideal bar to monitor the status of multiple objects.
 
 ----
 
-Current features:
+**Current features**:
 - Shows values for the provided categories with the provided colors in background.
 - Fails gracefully by showing 'N/A' with a grey background if:
-  - no object is provided
+  - no object is provided;
   - the sum of values in the provided object is zero.
 - Does not show categories for which the value is zero.
 
 ----
 
-Backlog:
+**Backlog**:
 - Option to show/hide the legend
 - Option to show/hide numbers in the bar
 - Option to show/hide numbers in the legend
