@@ -22,7 +22,8 @@
 			width: 200,
 			payload: {},
 			colors: [],
-            showLegend: true
+            showLegend: true,
+            showValuesInBar: true
 		},
 
         _create: function() {
@@ -69,7 +70,7 @@
                 var color = colors[i];
 
                 if (value > 0) { // Only add section in the bar if value is positive
-                    this._populateBar(bar.tr, color, value, value * objectWidth);
+                    this._populateBar(bar.tr, color, (this.options.showValuesInBar ? value : "&nbsp;"), value * objectWidth);
                 }
 
                 if (this.options.showLegend) {

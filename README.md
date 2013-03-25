@@ -14,11 +14,11 @@ The ideal bar to monitor the status of multiple objects.
   - the sum of values in the provided object is zero.
 - Does not show categories for which the value is zero.
 - Option to show/hide the legend.
+- Option to show/hide values in the status bar.
 
 ----
 
 **Backlog**:
-- Option to show/hide numbers in the bar
 - Option to show/hide numbers in the legend
 - Harmonize width differences caused by ceiling/rounding errors
 - Option to automatically pick colors with a good contrast for the text
