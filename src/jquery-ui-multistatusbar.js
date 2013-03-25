@@ -23,6 +23,7 @@
 			payload: {},
 			colors: [],
             showLegend: true,
+            showValuesInLegend: false,
             showValuesInBar: true
 		},
 
@@ -74,7 +75,7 @@
                 }
 
                 if (this.options.showLegend) {
-                    this._populateLegend(legend.table, color, key);
+                    this._populateLegend(legend.table, color, (this.options.showValuesInLegend ? (key+": "+value+"/"+totalNumObjects) : key));
                 }
 
                 i++;

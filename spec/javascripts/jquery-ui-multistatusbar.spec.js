@@ -151,4 +151,23 @@ describe("jQuery multi-status bar plugin", function () {
 
         expect($("#multiStatusBar").children("div").length).toEqual(1); // Legend should have been created.
     });
+
+    it("should show values in the legend if configured accordingly", function () {
+        loadFixtures("multistatusbar.html");
+        $("#multiStatusBar").multistatusbar({
+            payload: {"NEW": 2, "IN PROGRESS": 5, "FINISHED": 10},
+            colors: ["#D5E5FF", "#FFFF84", "#00CC33"],
+            showValuesInLegend: true
+        });
+
+        expect($("#multiStatusBar > div > table > tbody").children().length).toEqual(3);
+
+        expect($("#multiStatusBar > div > table > tbody > tr:nth-child(1) > td:nth-child(2)").text()).toEqual("NEW: 2/17");
+        expect($("#multiStatusBar > div > table > tbody > tr:nth-child(2) > td:nth-child(2)").text()).toEqual("IN PROGRESS: 5/17");
+        expect($("#multiStatusBar > div > table > tbody > tr:nth-child(3) > td:nth-child(2)").text()).toEqual("FINISHED: 10/17");
+
+        expect($("#multiStatusBar > div > table > tbody > tr:nth-child(1) > td:nth-child(1) > div")).toHaveBackgroundColorEqualTo("#D5E5FF");
+        expect($("#multiStatusBar > div > table > tbody > tr:nth-child(2) > td:nth-child(1) > div")).toHaveBackgroundColorEqualTo("#FFFF84");
+        expect($("#multiStatusBar > div > table > tbody > tr:nth-child(3) > td:nth-child(1) > div")).toHaveBackgroundColorEqualTo("#00CC33");
+    });
 });

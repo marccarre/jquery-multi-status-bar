@@ -15,11 +15,11 @@ The ideal bar to monitor the status of multiple objects.
 - Does not show categories for which the value is zero.
 - Option to show/hide the legend.
 - Option to show/hide values in the status bar.
+- Option to show/hide values in the legend.
 
 ----
 
 **Backlog**:
-- Option to show/hide numbers in the legend
 - Harmonize width differences caused by ceiling/rounding errors
 - Option to automatically pick colors with a good contrast for the text
 - Option to set the min width of the bar
