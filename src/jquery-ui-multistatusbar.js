@@ -21,7 +21,8 @@
 		options: {
 			width: 200,
 			payload: {},
-			colors: []
+			colors: [],
+            showLegend: true
 		},
 
         _create: function() {
@@ -42,58 +43,67 @@
 		},
 
         _createEmptyWidget: function() {
-            var bar = this._createStatusBar();
-            this._populateBar(bar.row, "#DDDDDD", "N/A", this.options.width);
+            var bar = this._createStatusBar(this.options.width);
+            this.element.append(bar.table);
+            this._populateBar(bar.tr, "#DDDDDD", "N/A", this.options.width);
         },
 
         _createAndPopulateWidget: function(totalNumObjects) {
             var objectWidth = this.options.width / totalNumObjects;
-            var bar = this._createStatusBar();
-            var legend = this._createLegend();
-            this._populate(totalNumObjects, objectWidth, bar.row, legend.table); // Populate with values and associated colors.
-            this._hookEvents(bar.statusBar, legend.legend);
-        },
 
-        _createStatusBar: function() {
-			var statusBar = $("<table width='" + this.options.width + "px' cellpadding='0' cellspacing='0'></table>");
-			statusBar.addClass('ui-widget').addClass('ui-state-default').addClass('ui-corner-all').addClass('ui-multistatusbar');
-			
-			var row = $("<tr></tr>");
-			statusBar.append(row);
-			
-			this.element.append(statusBar); // Add to container.
-			
-			return {statusBar:statusBar, row:row}; // Return the status bar to hook events, and the row to populate it.
-		},
-		
-		_createLegend: function() {
-			var legend = $("<div></div>");
-			legend.addClass('ui-widget').addClass('ui-state-default').addClass('ui-corner-all').addClass('ui-multistatusbar-legend');
-			
-			var table = $("<table></table>");
-			legend.append(table);
-			
-			this.element.append(legend); // Add to container.
-			legend.hide(); // Hide legend by default:
-			
-			return {legend:legend, table:table}; // Return the legend to hook events, and the table to populate it.
-		},
+            var bar = this._createStatusBar(this.options.width);
+            this.element.append(bar.table);
 
-        _populate: function(objectsTotal, widthPerObject, bar, legend) {
+            if (this.options.showLegend) {
+                var legend = this._createLegend();
+                this.element.append(legend.div); // Add to container.
+            }
+
             var colors = this.options.colors;
             var payload = this.options.payload;
-
             var i = 0;
+
+            // Populate with values and associated colors:
             for (var key in payload) {
                 var value = payload[key];
                 var color = colors[i];
+
                 if (value > 0) { // Only add section in the bar if value is positive
-                    this._populateBar(bar, color, value, value * widthPerObject);
+                    this._populateBar(bar.tr, color, value, value * objectWidth);
                 }
-                this._populateLegend(legend, color, key);
+
+                if (this.options.showLegend) {
+                    this._populateLegend(legend.table, color, key);
+                }
+
                 i++;
             }
+
+            if (this.options.showLegend) {
+                this._hookEvents(bar.table, legend.div);
+            }
         },
+
+        _createStatusBar: function(width) {
+			var table = $("<table width='" + width + "px' cellpadding='0' cellspacing='0'></table>");
+			table.addClass('ui-widget').addClass('ui-state-default').addClass('ui-corner-all').addClass('ui-multistatusbar');
+			
+			var tr = $("<tr></tr>");
+			table.append(tr);
+			
+			return {table:table, tr:tr}; // Return both the status bar (to hook events) and the row (to populate it).
+		},
+		
+		_createLegend: function() {
+			var div = $("<div></div>");
+			div.addClass('ui-widget').addClass('ui-state-default').addClass('ui-corner-all').addClass('ui-multistatusbar-legend');
+			
+			var table = $("<table></table>");
+			div.append(table);
+			div.hide(); // Hide legend by default.
+			
+			return {div:div, table:table}; // Return both the div (to hook events) and the table (to populate it).
+		},
 
         _populateBar: function(bar, color, value, width) {
 			bar.append($("<td style='background-color: " + color + "; width:" + width + "px;'>"+ value +"</td>"));

@@ -56,6 +56,12 @@
                 payload: {"NEW": 0, "IN PROGRESS": 5, "FINISHED": 10},
                 colors: ["#D5E5FF", "#FFFF84", "#00CC33"]
             });
+
+            $("#bar5").multistatusbar({
+                payload: {"NEW": 2, "IN PROGRESS": 5, "FINISHED": 10},
+                colors: ["#D5E5FF", "#FFFF84", "#00CC33"],
+                showLegend: false
+            });
         });
     </script>
 </head>
@@ -135,6 +141,21 @@
                     </td>
                     <td>
                         <div id="bar4"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Customized <b>values</b>, <b> names</b> and <b>colors</b>, with legend disabled.<br/>&nbsp;<br/>Legend does <b>NOT</b> appear when
+                        you mouse over.
+                    </td>
+                    <td><pre class="prettyprint linenums">$("#bar5").multistatusbar({
+  payload: {"NEW": 2, "IN PROGRESS": 5, "FINISHED": 10},
+  colors: ["#D5E5FF", "#FFFF84", "#00CC33"],
+  showLegend: false
+});</pre>
+                    </td>
+                    <td>
+                        <div id="bar5"></div>
                     </td>
                 </tr>
             </table>
