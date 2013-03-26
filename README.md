@@ -20,11 +20,11 @@ The ideal bar to monitor the status of multiple objects.
 ----
 
 **Backlog**:
-- Harmonize width differences caused by ceiling/rounding errors
-- Option to automatically pick colors with a good contrast for the text
-- Option to set the min width of the bar
+- Add URLs to have click-able sections on the bar
+- Add 'cursor: pointer;' when events or URLs are present
 - Add periodical update via function pointer passed
 - Option to set the frequency of the update
 - Add ability to hook events
-- Add URLs to have click-able sections on the bar
-- Add 'cursor: pointer;' when events or URLs are present
+- Harmonize width differences caused by ceiling/rounding errors
+- Option to automatically pick colors with a good contrast for the text
+- Option to set the min width of the bar
