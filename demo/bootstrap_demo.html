@@ -77,7 +77,7 @@
 
             $("#bar8").multistatusbar({
                 payload: {"NEW": 2, "IN PROGRESS": 5, "FINISHED": 10},
-                urls: {"NEW": "http://github.com", "IN PROGRESS": "http://jquery.com", "FINISHED": "http://pivotal.github.com/jasmine"},
+                urls: {"NEW": "http://jquery.com", "FINISHED": "http://pivotal.github.com/jasmine"},
                 colors: ["#D5E5FF", "#FFFF84", "#00CC33"]
             });
         });
@@ -209,12 +209,11 @@
                 <tr>
                     <td>8</td>
                     <td>Customized <b>values</b>, <b> names</b>, <b>colors</b>, with <b>URLs in the bar</b>.<br/>&nbsp;<br/>
-                        Legend appears when you mouse over.<br/>&nbsp;<br/>
-                        <b>Clicking on the bar opens the corresponding URL</b>.
+                        <b>Clicking on the bar opens the corresponding URL</b> (e.g. for NEW and FINISHED only).
                     </td>
                     <td><pre class="prettyprint linenums">$("#bar8").multistatusbar({
   payload: {"NEW": 2, "IN PROGRESS": 5, "FINISHED": 10},
-  urls: {"NEW": "http://github.com", "IN PROGRESS": "http://jquery.com", "FINISHED": "http://pivotal.github.com/jasmine"},
+  urls: {"NEW": "http://jquery.com", "FINISHED": "http://pivotal.github.com/jasmine"},
   colors: ["#D5E5FF", "#FFFF84", "#00CC33"]
 });</pre>
                     </td>
