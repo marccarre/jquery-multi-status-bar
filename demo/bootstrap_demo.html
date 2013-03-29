@@ -74,6 +74,12 @@
                 colors: ["#D5E5FF", "#FFFF84", "#00CC33"],
                 showValuesInLegend: true
             });
+
+            $("#bar8").multistatusbar({
+                payload: {"NEW": 2, "IN PROGRESS": 5, "FINISHED": 10},
+                urls: {"NEW": "http://github.com", "IN PROGRESS": "http://jquery.com", "FINISHED": "http://pivotal.github.com/jasmine"},
+                colors: ["#D5E5FF", "#FFFF84", "#00CC33"]
+            });
         });
     </script>
 </head>
@@ -198,6 +204,22 @@
                     </td>
                     <td>
                         <div id="bar7"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>Customized <b>values</b>, <b> names</b>, <b>colors</b>, with <b>URLs in the bar</b>.<br/>&nbsp;<br/>
+                        Legend appears when you mouse over.<br/>&nbsp;<br/>
+                        <b>Clicking on the bar opens the corresponding URL</b>.
+                    </td>
+                    <td><pre class="prettyprint linenums">$("#bar8").multistatusbar({
+  payload: {"NEW": 2, "IN PROGRESS": 5, "FINISHED": 10},
+  urls: {"NEW": "http://github.com", "IN PROGRESS": "http://jquery.com", "FINISHED": "http://pivotal.github.com/jasmine"},
+  colors: ["#D5E5FF", "#FFFF84", "#00CC33"]
+});</pre>
+                    </td>
+                    <td>
+                        <div id="bar8"></div>
                     </td>
                 </tr>
             </table>

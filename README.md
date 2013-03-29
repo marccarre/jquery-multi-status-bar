@@ -16,12 +16,11 @@ The ideal bar to monitor the status of multiple objects.
 - Option to show/hide the legend.
 - Option to show/hide values in the status bar.
 - Option to show/hide values in the legend.
+- Maps an URL to each category, in order to have click-able sections in the status bar.
 
 ----
 
 **Backlog**:
-- Add URLs to have click-able sections on the bar
-- Add 'cursor: pointer;' when events or URLs are present
 - Add periodical update via function pointer passed
 - Option to set the frequency of the update
 - Add ability to hook events

@@ -15,12 +15,13 @@
  * limitations under the License.
  ******************************************************************************/
 
-.ui-multistatusbar { text-align: center; border-spacing: 0px; border-collapse: collapse; border: solid 1px black; }
+.ui-multistatusbar { color: #333333; text-align: center; border-spacing: 0px; border-collapse: collapse; border: solid 1px black; }
 .ui-multistatusbar td { margin: 0; padding: 0; text-align: center; border-top: 1px solid black; }
+.ui-multistatusbar td a { color: #333333; text-decoration: none; display: block; outline: 0; outline-offset: 0; }
 
 .ui-multistatusbar-legend { margin-top: 1px; background-color: white; display:block; position:absolute; z-index:99999; }
 .ui-multistatusbar-legend table { border: solid 1px black; vertical-align: middle; margin-bottom: 0px; }
-.ui-multistatusbar-legend td { font-size: small; border-top: 0px; line-height: 16px; vertical-align: middle; padding: 1px; background-color: white; }
+.ui-multistatusbar-legend td { font-size: small; border-top: 0px; line-height: 20px; vertical-align: middle; padding: 1px; background-color: white; }
 
 .ui-multistatusbar-legend-icon { border: solid 1px black; width: 5px; height: 5px; }
 .ui-multistatusbar-legend-icon { border: solid 1px black; width: 5px; height: 5px; }

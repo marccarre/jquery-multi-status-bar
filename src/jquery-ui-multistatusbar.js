@@ -22,6 +22,7 @@
 		options: {
 			width: 200,
 			payload: {},
+            urls: {},
 			colors: [],
             showLegend: true,
             showValuesInLegend: false,
@@ -52,30 +53,7 @@
             if (this.options.showLegend) {
                 var legend = new Legend();
                 this.element.append(legend.div);
-            }
 
-            function populateStatusBarAndLegend() {
-                var colors = this.options.colors;
-                var payload = this.options.payload;
-                var i = 0;
-
-                for (var key in payload) {
-                    var value = payload[key];
-                    var color = colors[i];
-
-                    if (value > 0) {
-                        bar.addValue((this.options.showValuesInBar ? value : "&nbsp;"), value * objectWidth, color);
-                    }
-
-                    if (this.options.showLegend) {
-                        legend.addCategory((this.options.showValuesInLegend ? (key + ": " + value + "/" + totalNumObjects) : key), color);
-                    }
-
-                    i++;
-                }
-            }
-
-            function configureEventHandlersToShowOrHideLegend() {
                 bar.table.mouseover(function (event) {
                     legend.div.show();
                 });
@@ -84,9 +62,28 @@
                 });
             }
 
-            populateStatusBarAndLegend.call(this);
-            if (this.options.showLegend) {
-                configureEventHandlersToShowOrHideLegend();
+            var colors = this.options.colors;
+            var payload = this.options.payload;
+            var urls = this.options.urls;
+            var i = 0;
+
+            for (var key in payload) {
+                var value = payload[key];
+                var color = colors[i];
+
+                if (value > 0) {
+                    var td = bar.addValue((this.options.showValuesInBar ? value : "&nbsp;"), value * objectWidth, color);
+
+                    if (key in urls) {
+                        td.wrapInner('<a href="'+ urls[key]+ '" target="_blank" ></a>');
+                    }
+                }
+
+                if (this.options.showLegend) {
+                    legend.addCategory((this.options.showValuesInLegend ? (key + ": " + value + "/" + totalNumObjects) : key), color);
+                }
+
+                i++;
             }
         }});
 
@@ -98,10 +95,12 @@
 
         this.tr = $("<tr></tr>");
         this.table.append(this.tr);
-    }
 
-    StatusBar.prototype.addValue = function(value, width, color) {
-        this.tr.append($("<td style='background-color: " + color + "; width:" + width + "px;'>" + value + "</td>"));
+        this.addValue = function(value, width, color) {
+            var td = $("<td style='background-color: " + color + "; width:" + width + "px;'>" + value + "</td>");
+            this.tr.append(td);
+            return td;
+        }
     }
 
     //----------------------------------------------------- Legend class
@@ -113,10 +112,10 @@
         this.table = $("<table></table>");
         this.div.append(this.table);
         this.div.hide(); // Hide legend by default.
-    }
 
-    Legend.prototype.addCategory = function(text, color) {
-        this.table.append("<tr><td><div class='ui-multistatusbar-legend-icon' style='background-color: " + color + ";'></div></td><td>" + text + "</td></tr>");
+        this.addCategory = function(text, color) {
+            this.table.append("<tr><td><div class='ui-multistatusbar-legend-icon' style='background-color: " + color + ";'></div></td><td>" + text + "</td></tr>");
+        }
     }
 
     //----------------------------------------------------- Utilities

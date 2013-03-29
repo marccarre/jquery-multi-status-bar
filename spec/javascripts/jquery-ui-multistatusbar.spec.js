@@ -170,4 +170,46 @@ describe("jQuery multi-status bar plugin", function () {
         expect($("#multiStatusBar > div > table > tbody > tr:nth-child(2) > td:nth-child(1) > div")).toHaveBackgroundColorEqualTo("#FFFF84");
         expect($("#multiStatusBar > div > table > tbody > tr:nth-child(3) > td:nth-child(1) > div")).toHaveBackgroundColorEqualTo("#00CC33");
     });
+
+    it("should be able to map an URL to each provided category, and clicking on the corresponding section of the status bar would open a new tab pointing to configured URL", function () {
+        loadFixtures("multistatusbar.html");
+        $("#multiStatusBar").multistatusbar({
+            payload: {"NEW": 2, "IN PROGRESS": 5, "FINISHED": 10},
+            urls: {"NEW": "http://github.com", "IN PROGRESS": "http://jquery.com", "FINISHED": "http://pivotal.github.com/jasmine"},
+            colors: ["#D5E5FF", "#FFFF84", "#00CC33"]
+        });
+
+        expect($("#multiStatusBar > table > tbody > tr").children().length).toEqual(3);
+
+        expect($("#multiStatusBar > table > tbody > tr > td:nth-child(1) > a").text()).toEqual("2");
+        expect($("#multiStatusBar > table > tbody > tr > td:nth-child(2) > a").text()).toEqual("5");
+        expect($("#multiStatusBar > table > tbody > tr > td:nth-child(3) > a ").text()).toEqual("10");
+
+        expect($("#multiStatusBar > table > tbody > tr > td:nth-child(1) > a").attr("href")).toEqual("http://github.com");
+        expect($("#multiStatusBar > table > tbody > tr > td:nth-child(2) > a").attr("href")).toEqual("http://jquery.com");
+        expect($("#multiStatusBar > table > tbody > tr > td:nth-child(3) > a").attr("href")).toEqual("http://pivotal.github.com/jasmine");
+
+        expect($("#multiStatusBar > table > tbody > tr > td:nth-child(1) > a").attr("target")).toEqual("_blank");
+        expect($("#multiStatusBar > table > tbody > tr > td:nth-child(2) > a").attr("target")).toEqual("_blank");
+        expect($("#multiStatusBar > table > tbody > tr > td:nth-child(3) > a").attr("target")).toEqual("_blank");
+    });
+
+    it("should be able to map an URL to some categories, based on the category name, and regardless of missing URL for some other categories", function () {
+        loadFixtures("multistatusbar.html");
+        $("#multiStatusBar").multistatusbar({
+            payload: {"NEW": 2, "IN PROGRESS": 5, "FINISHED": 10},
+            urls: {"NEW": "http://github.com", "FINISHED": "http://pivotal.github.com/jasmine"},
+            colors: ["#D5E5FF", "#FFFF84", "#00CC33"]
+        });
+
+        expect($("#multiStatusBar > table > tbody > tr").children().length).toEqual(3);
+
+        expect($("#multiStatusBar > table > tbody > tr > td:nth-child(1) > a").text()).toEqual("2");
+        expect($("#multiStatusBar > table > tbody > tr > td:nth-child(2)").text()).toEqual("5");
+        expect($("#multiStatusBar > table > tbody > tr > td:nth-child(3) > a ").text()).toEqual("10");
+
+        expect($("#multiStatusBar > table > tbody > tr > td:nth-child(1) > a").attr("href")).toEqual("http://github.com");
+        expect($("#multiStatusBar > table > tbody > tr > td:nth-child(2) > a").attr("href")).toEqual(undefined);
+        expect($("#multiStatusBar > table > tbody > tr > td:nth-child(3) > a").attr("href")).toEqual("http://pivotal.github.com/jasmine");
+    });
 });
