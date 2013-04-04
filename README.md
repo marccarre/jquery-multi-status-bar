@@ -17,13 +17,10 @@ The ideal bar to monitor the status of multiple objects.
 - Option to show/hide values in the status bar.
 - Option to show/hide values in the legend.
 - Maps an URL to each category, in order to have click-able sections in the status bar.
+- Ability to periodically update the status bar by passing an URL and a refresh frequency.
 
 ----
 
 **Backlog**:
-- Add periodical update via function pointer passed
-- Option to set the frequency of the update
-- Add ability to hook events
-- Harmonize width differences caused by ceiling/rounding errors
 - Option to automatically pick colors with a good contrast for the text
-- Option to set the min width of the bar
+- Harmonize width differences caused by ceiling/rounding errors

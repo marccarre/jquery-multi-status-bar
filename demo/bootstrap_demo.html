@@ -80,6 +80,12 @@
                 urls: {"NEW": "http://jquery.com", "FINISHED": "http://pivotal.github.com/jasmine"},
                 colors: ["#D5E5FF", "#FFFF84", "#00CC33"]
             });
+
+            $("#bar9").multistatusbar({
+                colors: ["#D5E5FF", "#FFFF84", "#00CC33"],
+                refreshUrl: "http://127.0.0.1:1337/",
+                refreshFrequencyInMillis: 1000
+            });
         });
     </script>
 </head>
@@ -219,6 +225,21 @@
                     </td>
                     <td>
                         <div id="bar8"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td><b>Empty initial values</b> with customized <b> names</b> and <b>colors</b>.<br/>&nbsp;<br/>
+                    <b>Automated refresh</b> configured by providing <b>web service URL</b> and <b>refresh frequency</b>.
+                    </td>
+                    <td><pre class="prettyprint linenums">$("#bar9").multistatusbar({
+  colors: ["#D5E5FF", "#FFFF84", "#00CC33"],
+  refreshUrl: "http://127.0.0.1:1337/",
+  refreshFrequencyInMillis: 1000
+});</pre>
+                    </td>
+                    <td>
+                        <div id="bar9"></div>
                     </td>
                 </tr>
             </table>

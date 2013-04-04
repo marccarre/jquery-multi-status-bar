@@ -15,36 +15,47 @@
  * limitations under the License.
  ******************************************************************************/
 
-(function($, undefined) {
+(function ($, undefined) {
 
     $.widget("ui-marccarre.multistatusbar", {
-		version: "1.1.0",
-		options: {
-			width: 200,
-			payload: {},
+        version: "1.1.0",
+        options: {
+            width: 200,
+            payload: {},
             urls: {},
-			colors: [],
+            colors: [],
             showLegend: true,
             showValuesInLegend: false,
-            showValuesInBar: true
-		},
+            showValuesInBar: true,
+            refreshUrl: null,
+            refreshFrequencyInMillis: 5000,
+            enableRefresh: true
+        },
 
-        _create: function() {
-			var totalNumObjects = sumValues(this.options.payload);
+        _create: function () {
+            this._doCreate();
+
+            if (this.options.refreshUrl != null) {
+                this._setUpAutoRefresh();
+            }
+        },
+
+        _doCreate: function () {
+            var totalNumObjects = sumValues(this.options.payload);
             if (totalNumObjects == 0) {
                 this._createEmptyWidget();
             } else {
                 this._createAndPopulateWidget(totalNumObjects);
             }
-		},
+        },
 
-        _createEmptyWidget: function() {
+        _createEmptyWidget: function () {
             var bar = new StatusBar(this.options.width);
             bar.addValue("N/A", this.options.width, "#DDDDDD");
             this.element.append(bar.table);
         },
 
-        _createAndPopulateWidget: function(totalNumObjects) {
+        _createAndPopulateWidget: function (totalNumObjects) {
             var objectWidth = this.options.width / totalNumObjects;
 
             var bar = new StatusBar(this.options.width);
@@ -75,7 +86,7 @@
                     var td = bar.addValue((this.options.showValuesInBar ? value : "&nbsp;"), value * objectWidth, color);
 
                     if (key in urls) {
-                        td.wrapInner('<a href="'+ urls[key]+ '" target="_blank" ></a>');
+                        td.wrapInner('<a href="' + urls[key] + '" target="_blank" ></a>');
                     }
                 }
 
@@ -85,6 +96,51 @@
 
                 i++;
             }
+        },
+
+        _setUpAutoRefresh: function () {
+            function autoRefresher(that) {
+                var url = that.options.refreshUrl;
+
+                function isSameDomain(url) {
+                    var domain = document.domain.toString();
+                    return (domain.length > 0) && (url.length > 0) && (url.indexOf(domain) !== -1);
+                };
+                function isSameHostname(url) {
+                    var hostname = window.location.hostname.toString();
+                    return (hostname.length > 0) && (url.length > 0) && (url.indexOf(hostname) !== -1);
+                };
+                function useJson() {
+                    return isSameDomain(url) || isSameHostname(url) || (url === "http://host:port/webservice/status");
+                };
+
+                if (that.options.enableRefresh) {
+                    $.ajax({
+                        url: url,
+                        dataType: useJson() ? "json" : "jsonp"
+                    }).done(function (data) {
+                            that.options.payload = useJson() ? data : JSON.parse(data);
+                        }).fail(function (jqXHR, textStatus, errorThrown) {
+                            console.log('error: ' + JSON.stringify(jqXHR) + '\n  status: ' + textStatus + '\n  error: ' + errorThrown);
+                            that.options.payload = {};
+                        }).always(function () {
+                            that.element.children().remove();
+                            that._doCreate();
+
+                            // Schedule the next refresh once the current one is complete
+                            setTimeout(function () {
+                                autoRefresher(that);
+                            }, that.options.refreshFrequencyInMillis);
+                        });
+                }
+            };
+
+            autoRefresher(this);
+        },
+
+        _destroy: function () {
+            this.options.enableRefresh = false;
+            this.element.children().remove();
         }});
 
     //----------------------------------------------------- StatusBar class
@@ -96,7 +152,7 @@
         this.tr = $("<tr></tr>");
         this.table.append(this.tr);
 
-        this.addValue = function(value, width, color) {
+        this.addValue = function (value, width, color) {
             var td = $("<td style='background-color: " + color + "; width:" + width + "px;'>" + value + "</td>");
             this.tr.append(td);
             return td;
@@ -113,7 +169,7 @@
         this.div.append(this.table);
         this.div.hide(); // Hide legend by default.
 
-        this.addCategory = function(text, color) {
+        this.addCategory = function (text, color) {
             this.table.append("<tr><td><div class='ui-multistatusbar-legend-icon' style='background-color: " + color + ";'></div></td><td>" + text + "</td></tr>");
         }
     }
