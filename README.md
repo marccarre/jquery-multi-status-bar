@@ -30,16 +30,16 @@ The ideal bar to monitor the status of multiple objects.
 2. Download the multi-status bar (javascript, css)
 
 3. Add them to your page:
- 
+
     <link type="text/css" href="jquery-ui-multistatusbar.min.css" rel="stylesheet"/>
     <script type="text/javascript" src="jquery-ui-multistatusbar.min.js"></script>
 
 4. Add a `div` in your page, e.g. :
- 
+
     <div id="bar"></div>
 
 5. Create the plugin when your page has been loaded, e.g. :
- 
+
     <script type="text/javascript">
         $(document).ready(function () {
             $("#bar").multistatusbar({
