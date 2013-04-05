@@ -2,7 +2,8 @@ jquery-multi-status-bar
 =======================
 
 The ideal bar to monitor the status of multiple objects.
-Latest version: 1.1.0
+
+**Latest version**: 1.1.0
 
 (Originally hosted at: http://code.google.com/p/jquery-multi-status-bar/)
 
