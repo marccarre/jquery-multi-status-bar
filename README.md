@@ -22,33 +22,33 @@ The ideal bar to monitor the status of multiple objects.
 ----
 
 **Usage**:
+
 1. Add jQuery and jQuery UI to your page:
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
 
 2. Download the multi-status bar (javascript, css)
 
 3. Add them to your page:
 
-    <link type="text/css" href="jquery-ui-multistatusbar.min.css" rel="stylesheet"/>
-    <script type="text/javascript" src="jquery-ui-multistatusbar.min.js"></script>
+        <link type="text/css" href="jquery-ui-multistatusbar.min.css" rel="stylesheet"/>
+        <script type="text/javascript" src="jquery-ui-multistatusbar.min.js"></script>
 
-4. Add a `div` in your page, e.g. :
+4. Add a `div` in your page:
 
-    <div id="bar"></div>
+        <div id="bar"></div>
 
 5. Create the plugin when your page has been loaded, e.g. :
 
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $("#bar").multistatusbar({
-                payload: {"NEW": 2, "IN PROGRESS": 5, "FINISHED": 10},
-                colors: ["#D5E5FF", "#FFFF84", "#00CC33"]
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#bar").multistatusbar({
+                    payload: {"NEW": 2, "IN PROGRESS": 5, "FINISHED": 10},
+                    colors: ["#D5E5FF", "#FFFF84", "#00CC33"]
+                });
             });
-        });
-    </script>
-
+        </script>
 
 ----
 
