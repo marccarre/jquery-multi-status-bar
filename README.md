@@ -35,16 +35,16 @@ Latest version: 1.1.0
 
 2. Download the multi-status bar ([full package](https://github.com/marccarre/jquery-multi-status-bar/archive/jquery-ui-multistatusbar-1.1.0.zip "Full pack") or just the [javascript](https://raw.github.com/marccarre/jquery-multi-status-bar/jquery-ui-multistatusbar-1.1.0/src/jquery-ui-multistatusbar.min.js "JS") and the [css](https://raw.github.com/marccarre/jquery-multi-status-bar/jquery-ui-multistatusbar-1.1.0/src/jquery-ui-multistatusbar.min.css "CSS"))
 
-3. Add them to your page:
+3. Add the javascript and the css to your page:
 
         <link type="text/css" href="jquery-ui-multistatusbar.min.css" rel="stylesheet"/>
         <script type="text/javascript" src="jquery-ui-multistatusbar.min.js"></script>
 
-4. Add a `div` in your page:
+4. Add a `div` to your page:
 
         <div id="bar"></div>
 
-5. Create the plugin when your page has been loaded:
+5. Configure your page to create the plugin once it has been loaded:
 
         <script type="text/javascript">
             $(document).ready(function () {
