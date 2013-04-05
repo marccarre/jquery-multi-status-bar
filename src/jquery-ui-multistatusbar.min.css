@@ -1,0 +1,6 @@
+/*
+ * Copyright 2013 Marc CARRE
+ * https://github.com/marccarre/jquery-multi-status-bar
+ * Licensed under the Apache License, Version 2.0.
+ */
+.ui-multistatusbar{color:#333;text-align:center;border-spacing:0;border-collapse:collapse;border:solid 1px black}.ui-multistatusbar td{margin:0;padding:0;text-align:center;vertical-align:middle;border-top:1px solid black}.ui-multistatusbar td a{color:#333;text-decoration:none;display:block;outline:0;outline-offset:0}.ui-multistatusbar-legend{margin-top:1px;background-color:white;display:block;position:absolute;z-index:99999}.ui-multistatusbar-legend table{border:solid 1px black;vertical-align:middle;margin-bottom:0}.ui-multistatusbar-legend td{font-size:small;border-top:0;line-height:20px;vertical-align:middle;padding:1px;background-color:white}.ui-multistatusbar-legend-icon{border:solid 1px black;width:5px;height:5px}.ui-multistatusbar-legend-icon{border:solid 1px black;width:5px;height:5px}

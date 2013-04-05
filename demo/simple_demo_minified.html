@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>jQuery multi-status bar demo</title>
+
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <!-- IMPORTANT: Setup of the jQuery multi-status bar plugin. -->
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <link type="text/css" href="../src/jquery-ui-multistatusbar.min.css" rel="stylesheet"/>
+
+    <script type="text/javascript" src="../lib/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="../lib/jquery-ui-1.10.2.min.js"></script>
+    <script type="text/javascript" src="../src/jquery-ui-multistatusbar.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $("#bar1").multistatusbar();
+
+            $("#bar2").multistatusbar({
+                payload: {"NEW": 2, "IN PROGRESS": 5, "FINISHED": 10},
+                colors: ["#D5E5FF", "#FFFF84", "#00CC33"]
+            });
+
+            $("#bar3").multistatusbar({
+                width: 300,
+                payload: {"NEW": 2, "PREPROCESSING": 1, "PREPROCESSED": 1, "SUBMITTING": 2, "SUBMITTED": 1, "RUNNING": 7, "COMPLETED": 7, "FAILED": 1, "CANCELLED": 1},
+                colors: [ "#D5E5FF", "#80B3FF", "#2A7FFF", "#44B4D5", "#03EBA6", "#FFFF84", "#00CC33", "#FF4E00", "#979797" ]
+            });
+
+            $("#bar4").multistatusbar({
+                payload: {"NEW": 0, "IN PROGRESS": 5, "FINISHED": 10},
+                colors: ["#D5E5FF", "#FFFF84", "#00CC33"]
+            });
+
+            $("#bar5").multistatusbar({
+                payload: {"NEW": 2, "IN PROGRESS": 5, "FINISHED": 10},
+                colors: ["#D5E5FF", "#FFFF84", "#00CC33"],
+                showLegend: false
+            });
+
+            $("#bar6").multistatusbar({
+                payload: {"NEW": 2, "IN PROGRESS": 5, "FINISHED": 10},
+                colors: ["#D5E5FF", "#FFFF84", "#00CC33"],
+                showValuesInBar: false
+            });
+
+            $("#bar7").multistatusbar({
+                payload: {"NEW": 2, "IN PROGRESS": 5, "FINISHED": 10},
+                colors: ["#D5E5FF", "#FFFF84", "#00CC33"],
+                showValuesInLegend: true
+            });
+
+            $("#bar8").multistatusbar({
+                payload: {"NEW": 2, "IN PROGRESS": 5, "FINISHED": 10},
+                urls: {"NEW": "http://jquery.com", "FINISHED": "http://pivotal.github.com/jasmine"},
+                colors: ["#D5E5FF", "#FFFF84", "#00CC33"]
+            });
+
+            $("#bar9").multistatusbar({
+                colors: ["#D5E5FF", "#FFFF84", "#00CC33"],
+                refreshUrl: "http://127.0.0.1:1337/",
+                refreshFrequencyInMillis: 1000
+            });
+        });
+    </script>
+    <style type="text/css">
+    </style>
+</head>
+
+<body>
+    <div>
+        <a href="https://github.com/marccarre/jquery-multi-status-bar">jQuery multi-status bar plugin @ GitHub</a>
+        <div>
+            <h1>jQuery multi-status bar plugin</h1>
+            <p>The ideal bar to monitor the status of multiple objects.</p>
+        </div>
+    </div>
+    <table border="1">
+        <tr>
+            <th>#</th>
+            <th>Comment</th>
+            <th>Source code</th>
+            <th>Result</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td><b>Default</b> multi-status bar.</td>
+            <td>
+                <pre>$("#bar1").multistatusbar();</pre>
+            </td>
+            <td>
+                <div id="bar1"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Customized <b>values</b>, <b> names</b> and <b>colors</b>.<br/>&nbsp;<br/>Legend appears when
+                you mouse over.
+            </td>
+            <td><pre>$("#bar2").multistatusbar({
+  payload: {"NEW": 2, "IN PROGRESS": 5, "FINISHED": 10},
+  colors: ["#D5E5FF", "#FFFF84", "#00CC33"]
+});</pre>
+            </td>
+            <td>
+                <div id="bar2"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Customized <b>values</b>, <b> names</b>, <b>colors</b> and <b>size</b>.<br/>&nbsp;<br/>Legend
+                appears when you mouse over.
+            </td>
+            <td><pre>$("#bar3").multistatusbar({
+  width: 300,
+  payload: {"NEW":2,"PREPROCESSING":1,"PREPROCESSED":1,"SUBMITTING":2,"SUBMITTED":1,"RUNNING":7,"COMPLETED":7,"FAILED":1,"CANCELLED":1},
+  colors: [ "#D5E5FF", "#80B3FF", "#2A7FFF", "#44B4D5", "#03EBA6", "#FFFF84", "#00CC33", "#FF4E00", "#979797" ]
+});</pre>
+            </td>
+            <td>
+                <div id="bar3"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>Categories containing '<b>zeros</b>', e.g. 'NEW', are <b>not</b> shown.<br/>&nbsp;<br/>Legend
+                appears when you mouse over.
+            </td>
+            <td><pre>$("#bar4").multistatusbar({
+  payload: {"NEW": 0, "IN PROGRESS": 5, "FINISHED": 10},
+  colors: ["#D5E5FF", "#FFFF84", "#00CC33"]
+});</pre>
+            </td>
+            <td>
+                <div id="bar4"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>Customized <b>values</b>, <b> names</b> and <b>colors</b>, with legend disabled.<br/>&nbsp;<br/>Legend does <b>NOT</b> appear when
+                you mouse over.
+            </td>
+            <td><pre>$("#bar5").multistatusbar({
+  payload: {"NEW": 2, "IN PROGRESS": 5, "FINISHED": 10},
+  colors: ["#D5E5FF", "#FFFF84", "#00CC33"],
+  showLegend: false
+});</pre>
+            </td>
+            <td>
+                <div id="bar5"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>Customized <b>values</b>, <b> names</b> and <b>colors</b>, with values <b>NOT SHOWN</b> in the bar.<br/>&nbsp;<br/>
+                Legend appears when you mouse over.
+            </td>
+            <td><pre>$("#bar6").multistatusbar({
+  payload: {"NEW": 2, "IN PROGRESS": 5, "FINISHED": 10},
+  colors: ["#D5E5FF", "#FFFF84", "#00CC33"],
+  showValuesInBar: false
+});</pre>
+            </td>
+            <td>
+                <div id="bar6"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td>Customized <b>values</b>, <b> names</b> and <b>colors</b>, with values <b>SHOWN</b> in the legend.<br/>&nbsp;<br/>
+                Legend appears when you mouse over.
+            </td>
+            <td><pre>$("#bar7").multistatusbar({
+  payload: {"NEW": 2, "IN PROGRESS": 5, "FINISHED": 10},
+  colors: ["#D5E5FF", "#FFFF84", "#00CC33"],
+  showValuesInLegend: true
+});</pre>
+            </td>
+            <td>
+                <div id="bar7"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>8</td>
+            <td>Customized <b>values</b>, <b> names</b>, <b>colors</b>, with <b>URLs in the bar</b>.<br/>&nbsp;<br/>
+                <b>Clicking on the bar opens the corresponding URL</b> (e.g. for NEW and FINISHED only).
+            </td>
+            <td><pre>$("#bar8").multistatusbar({
+  payload: {"NEW": 2, "IN PROGRESS": 5, "FINISHED": 10},
+  urls: {"NEW": "http://jquery.com", "FINISHED": "http://pivotal.github.com/jasmine"},
+  colors: ["#D5E5FF", "#FFFF84", "#00CC33"]
+});</pre>
+            </td>
+            <td>
+                <div id="bar8"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>9</td>
+            <td><b>Empty initial values</b> with customized <b> names</b> and <b>colors</b>.<br/>&nbsp;<br/>
+            <b>Automated refresh</b> configured by providing <b>web service URL</b> and <b>refresh frequency</b> (N.B. : run <code>node Server.js</code> to observe dynamic behaviour).
+            </td>
+            <td><pre>$("#bar9").multistatusbar({
+  colors: ["#D5E5FF", "#FFFF84", "#00CC33"],
+  refreshUrl: "http://127.0.0.1:1337/",
+  refreshFrequencyInMillis: 1000
+});</pre>
+            </td>
+            <td>
+                <div id="bar9"></div>
+            </td>
+        </tr>
+    </table>
+
+<hr />
+
+<footer>
+    <p>Copyright &copy; 2012-2013 - Marc CARR&Eacute;</p>
+</footer>
+
+</body>
+</html>
