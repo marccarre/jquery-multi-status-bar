@@ -2,6 +2,7 @@ jquery-multi-status-bar
 =======================
 
 The ideal bar to monitor the status of multiple objects.
+Latest version: 1.1.0
 
 (Originally hosted at: http://code.google.com/p/jquery-multi-status-bar/)
 
@@ -28,7 +29,7 @@ The ideal bar to monitor the status of multiple objects.
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
 
-2. Download the multi-status bar (javascript, css)
+2. Download the multi-status bar ([full package](https://github.com/marccarre/jquery-multi-status-bar/archive/jquery-ui-multistatusbar-1.1.0.zip "Full pack") or just the [javascript](https://raw.github.com/marccarre/jquery-multi-status-bar/jquery-ui-multistatusbar-1.1.0/src/jquery-ui-multistatusbar.min.js "JS") and the [css](https://raw.github.com/marccarre/jquery-multi-status-bar/jquery-ui-multistatusbar-1.1.0/src/jquery-ui-multistatusbar.min.css "CSS"))
 
 3. Add them to your page:
 
@@ -39,7 +40,7 @@ The ideal bar to monitor the status of multiple objects.
 
         <div id="bar"></div>
 
-5. Create the plugin when your page has been loaded, e.g. :
+5. Create the plugin when your page has been loaded:
 
         <script type="text/javascript">
             $(document).ready(function () {
@@ -49,6 +50,8 @@ The ideal bar to monitor the status of multiple objects.
                 });
             });
         </script>
+
+6. Refresh your page. You're done!
 
 ----
 
