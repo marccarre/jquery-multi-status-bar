@@ -22,6 +22,10 @@ Latest version: 1.1.0
 
 ----
 
+**Demo**: [http://marccarre.github.com/jquery-multi-status-bar/](http://marccarre.github.com/jquery-multi-status-bar/ "Demo")
+
+----
+
 **Usage**:
 
 1. Add jQuery and jQuery UI to your page:
@@ -52,6 +56,8 @@ Latest version: 1.1.0
         </script>
 
 6. Refresh your page. You're done!
+
+7. Explore [all the possible options](http://marccarre.github.com/jquery-multi-status-bar/ "Demo") to configure your status bar.
 
 ----
 
