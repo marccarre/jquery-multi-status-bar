@@ -1,0 +1,14 @@
+# Subversion
+.svn/
+
+# OS/IDE Files #
+.DS_Store
+.metadata/
+.settings/
+.project
+.classpath
+.idea/
+
+# Build folders #
+bin/
+target/
