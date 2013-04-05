@@ -5,8 +5,6 @@ The ideal bar to monitor the status of multiple objects.
 
 **Latest version**: 1.1.0
 
-(Originally hosted at: http://code.google.com/p/jquery-multi-status-bar/)
-
 ----
 
 **Current features**:
@@ -65,3 +63,7 @@ The ideal bar to monitor the status of multiple objects.
 **Backlog**:
 - Option to automatically pick colors with a good contrast for the text
 - Harmonize width differences caused by ceiling/rounding errors
+
+----
+
+Originally hosted at: http://code.google.com/p/jquery-multi-status-bar/
