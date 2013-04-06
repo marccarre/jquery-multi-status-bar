@@ -12,3 +12,4 @@
 # Build folders #
 bin/
 target/
+node_modules/
