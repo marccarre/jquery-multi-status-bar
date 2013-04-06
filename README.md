@@ -32,7 +32,7 @@ The ideal bar to monitor the status of multiple objects.
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
 
-2. Download the multi-status bar ([full package](https://github.com/marccarre/jquery-multi-status-bar/archive/jquery-ui-multistatusbar-1.1.0.zip "Full pack") or just the [javascript](https://raw.github.com/marccarre/jquery-multi-status-bar/jquery-ui-multistatusbar-1.1.0/src/jquery-ui-multistatusbar.min.js "JS") and the [css](https://raw.github.com/marccarre/jquery-multi-status-bar/jquery-ui-multistatusbar-1.1.0/src/jquery-ui-multistatusbar.min.css "CSS"))
+2. Download the multi-status bar ([full package](https://github.com/marccarre/jquery-multi-status-bar/archive/jquery-ui-multistatusbar-1.1.0.zip "Full pack") or just the [javascript](https://raw.github.com/marccarre/jquery-multi-status-bar/1.1.0/src/jquery-ui-multistatusbar.min.js "JS") and the [css](https://raw.github.com/marccarre/jquery-multi-status-bar/1.1.0/src/jquery-ui-multistatusbar.min.css "CSS"))
 
 3. Add the javascript and the css to your page:
 
