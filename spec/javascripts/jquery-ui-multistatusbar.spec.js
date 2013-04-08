@@ -391,4 +391,99 @@ describe("jQuery multi-status bar plugin", function () {
             });
         });
     });
+
+    describe("should still be configurable after creation", function () {
+        beforeEach(function () {
+            $("#multiStatusBar").multistatusbar({
+                payload: {"NEW": 2, "IN PROGRESS": 5, "FINISHED": 10},
+                colors: ["#D5E5FF", "#FFFF84", "#00CC33"]
+            });
+        });
+
+        it("should be possible to update width", function () {
+            expect($("#multiStatusBar > table > tbody > tr > td:nth-child(1)")).toHavePixelWidthOf(200/17*2);
+            expect($("#multiStatusBar > table > tbody > tr > td:nth-child(2)")).toHavePixelWidthOf(200/17*5);
+            expect($("#multiStatusBar > table > tbody > tr > td:nth-child(3)")).toHavePixelWidthOf(200/17*10);
+
+            $("#multiStatusBar").multistatusbar('option', 'width', 300);
+
+            expect($("#multiStatusBar > table > tbody > tr > td:nth-child(1)")).toHavePixelWidthOf(300/17*2);
+            expect($("#multiStatusBar > table > tbody > tr > td:nth-child(2)")).toHavePixelWidthOf(300/17*5);
+            expect($("#multiStatusBar > table > tbody > tr > td:nth-child(3)")).toHavePixelWidthOf(300/17*10);
+        });
+
+        it("should be possible to update values", function () {
+            expect($("#multiStatusBar > table > tbody > tr > td:nth-child(1)").text()).toEqual("2");
+            expect($("#multiStatusBar > table > tbody > tr > td:nth-child(2)").text()).toEqual("5");
+            expect($("#multiStatusBar > table > tbody > tr > td:nth-child(3)").text()).toEqual("10");
+
+            $("#multiStatusBar").multistatusbar('option', 'payload', {"NEW": 3, "IN PROGRESS": 6, "FINISHED": 11});
+
+            expect($("#multiStatusBar > table > tbody > tr > td:nth-child(1)").text()).toEqual("3");
+            expect($("#multiStatusBar > table > tbody > tr > td:nth-child(2)").text()).toEqual("6");
+            expect($("#multiStatusBar > table > tbody > tr > td:nth-child(3)").text()).toEqual("11");
+        });
+
+        it("should be possible to update urls", function () {
+            expect($("#multiStatusBar > table > tbody > tr > td:nth-child(1) > a").attr("href")).toEqual(undefined);
+            expect($("#multiStatusBar > table > tbody > tr > td:nth-child(2) > a").attr("href")).toEqual(undefined);
+            expect($("#multiStatusBar > table > tbody > tr > td:nth-child(3) > a").attr("href")).toEqual(undefined);
+
+            $("#multiStatusBar").multistatusbar('option', 'urls', {"NEW": "http://github.com", "FINISHED": "http://pivotal.github.com/jasmine"});
+
+            expect($("#multiStatusBar > table > tbody > tr > td:nth-child(1) > a").attr("href")).toEqual("http://github.com");
+            expect($("#multiStatusBar > table > tbody > tr > td:nth-child(2) > a").attr("href")).toEqual(undefined);
+            expect($("#multiStatusBar > table > tbody > tr > td:nth-child(3) > a").attr("href")).toEqual("http://pivotal.github.com/jasmine");
+        });
+
+        it("should be possible to update colors", function () {
+            expect($("#multiStatusBar > table > tbody > tr > td:nth-child(1)")).toHaveBackgroundColorEqualTo("#D5E5FF");
+            expect($("#multiStatusBar > table > tbody > tr > td:nth-child(2)")).toHaveBackgroundColorEqualTo("#FFFF84");
+            expect($("#multiStatusBar > table > tbody > tr > td:nth-child(3)")).toHaveBackgroundColorEqualTo("#00CC33");
+            expect($("#multiStatusBar > div > table > tbody > tr:nth-child(1) > td:nth-child(1) > div")).toHaveBackgroundColorEqualTo("#D5E5FF");
+            expect($("#multiStatusBar > div > table > tbody > tr:nth-child(2) > td:nth-child(1) > div")).toHaveBackgroundColorEqualTo("#FFFF84");
+            expect($("#multiStatusBar > div > table > tbody > tr:nth-child(3) > td:nth-child(1) > div")).toHaveBackgroundColorEqualTo("#00CC33");
+
+            $("#multiStatusBar").multistatusbar('option', 'colors', ["#FF0000", "#00FF00", "#0000FF"]);
+
+            expect($("#multiStatusBar > table > tbody > tr > td:nth-child(1)")).toHaveBackgroundColorEqualTo("#FF0000");
+            expect($("#multiStatusBar > table > tbody > tr > td:nth-child(2)")).toHaveBackgroundColorEqualTo("#00FF00");
+            expect($("#multiStatusBar > table > tbody > tr > td:nth-child(3)")).toHaveBackgroundColorEqualTo("#0000FF");
+            expect($("#multiStatusBar > div > table > tbody > tr:nth-child(1) > td:nth-child(1) > div")).toHaveBackgroundColorEqualTo("#FF0000");
+            expect($("#multiStatusBar > div > table > tbody > tr:nth-child(2) > td:nth-child(1) > div")).toHaveBackgroundColorEqualTo("#00FF00");
+            expect($("#multiStatusBar > div > table > tbody > tr:nth-child(3) > td:nth-child(1) > div")).toHaveBackgroundColorEqualTo("#0000FF");
+        });
+
+        it("should be possible to update visibility of the legend", function () {
+            expect($("#multiStatusBar").children("div").length).toEqual(1);
+
+            $("#multiStatusBar").multistatusbar('option', 'showLegend', false);
+
+            expect($("#multiStatusBar").children("div").length).toEqual(0);
+        });
+
+        it("should be possible to update visibility of values in the legend", function () {
+            expect($("#multiStatusBar > div > table > tbody > tr:nth-child(1) > td:nth-child(2)").text()).toEqual("NEW");
+            expect($("#multiStatusBar > div > table > tbody > tr:nth-child(2) > td:nth-child(2)").text()).toEqual("IN PROGRESS");
+            expect($("#multiStatusBar > div > table > tbody > tr:nth-child(3) > td:nth-child(2)").text()).toEqual("FINISHED");
+
+            $("#multiStatusBar").multistatusbar('option', 'showValuesInLegend', true);
+
+            expect($("#multiStatusBar > div > table > tbody > tr:nth-child(1) > td:nth-child(2)").text()).toEqual("NEW: 2/17");
+            expect($("#multiStatusBar > div > table > tbody > tr:nth-child(2) > td:nth-child(2)").text()).toEqual("IN PROGRESS: 5/17");
+            expect($("#multiStatusBar > div > table > tbody > tr:nth-child(3) > td:nth-child(2)").text()).toEqual("FINISHED: 10/17");
+        });
+
+        it("should be possible to update visibility of values in the bar", function () {
+            expect($("#multiStatusBar > table > tbody > tr > td:nth-child(1)")).toHaveHtml("2");
+            expect($("#multiStatusBar > table > tbody > tr > td:nth-child(2)")).toHaveHtml("5");
+            expect($("#multiStatusBar > table > tbody > tr > td:nth-child(3)")).toHaveHtml("10");
+
+            $("#multiStatusBar").multistatusbar('option', 'showValuesInBar', false);
+
+            expect($("#multiStatusBar > table > tbody > tr > td:nth-child(1)")).toHaveHtml("&nbsp;");
+            expect($("#multiStatusBar > table > tbody > tr > td:nth-child(2)")).toHaveHtml("&nbsp;");
+            expect($("#multiStatusBar > table > tbody > tr > td:nth-child(3)")).toHaveHtml("&nbsp;");
+        });
+    });
 });

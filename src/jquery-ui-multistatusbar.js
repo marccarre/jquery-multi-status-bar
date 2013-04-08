@@ -18,7 +18,7 @@
 (function ($, undefined) {
 
     $.widget("ui-marccarre.multistatusbar", {
-        version: "1.1.0",
+        version: "1.1.1",
         options: {
             width: 200,
             payload: {},
@@ -136,6 +136,12 @@
             };
 
             autoRefresher(this);
+        },
+
+        _setOption: function(key, value) {
+            this.options[key] = value;
+            this.element.children().remove();
+            this._doCreate();
         },
 
         _destroy: function () {
