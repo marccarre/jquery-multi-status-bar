@@ -21,7 +21,7 @@ The ideal bar to monitor the status of multiple objects.
 
 ----
 
-**Demo**: [http://marccarre.github.com/jquery-multi-status-bar/](http://marccarre.github.com/jquery-multi-status-bar/ "Demo")
+**Demo**: [http://marccarre.github.io/jquery-multi-status-bar/](http://marccarre.github.io/jquery-multi-status-bar/ "Demo")
 
 ----
 
@@ -56,7 +56,7 @@ The ideal bar to monitor the status of multiple objects.
 
 6. Refresh your page. You're done!
 
-7. Explore [all the possible options](http://marccarre.github.com/jquery-multi-status-bar/ "Demo") to configure your status bar.
+7. Explore [all the possible options](http://marccarre.github.io/jquery-multi-status-bar/ "Demo") to configure your status bar.
 
 ----
 
