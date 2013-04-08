@@ -400,7 +400,7 @@ describe("jQuery multi-status bar plugin", function () {
             });
         });
 
-        it("should be possible to update width", function () {
+        it("should update width using options", function () {
             expect($("#multiStatusBar > table > tbody > tr > td:nth-child(1)")).toHavePixelWidthOf(200/17*2);
             expect($("#multiStatusBar > table > tbody > tr > td:nth-child(2)")).toHavePixelWidthOf(200/17*5);
             expect($("#multiStatusBar > table > tbody > tr > td:nth-child(3)")).toHavePixelWidthOf(200/17*10);
@@ -412,7 +412,7 @@ describe("jQuery multi-status bar plugin", function () {
             expect($("#multiStatusBar > table > tbody > tr > td:nth-child(3)")).toHavePixelWidthOf(300/17*10);
         });
 
-        it("should be possible to update values", function () {
+        it("should update values using options", function () {
             expect($("#multiStatusBar > table > tbody > tr > td:nth-child(1)").text()).toEqual("2");
             expect($("#multiStatusBar > table > tbody > tr > td:nth-child(2)").text()).toEqual("5");
             expect($("#multiStatusBar > table > tbody > tr > td:nth-child(3)").text()).toEqual("10");
@@ -424,7 +424,7 @@ describe("jQuery multi-status bar plugin", function () {
             expect($("#multiStatusBar > table > tbody > tr > td:nth-child(3)").text()).toEqual("11");
         });
 
-        it("should be possible to update urls", function () {
+        it("should update urls using options", function () {
             expect($("#multiStatusBar > table > tbody > tr > td:nth-child(1) > a").attr("href")).toEqual(undefined);
             expect($("#multiStatusBar > table > tbody > tr > td:nth-child(2) > a").attr("href")).toEqual(undefined);
             expect($("#multiStatusBar > table > tbody > tr > td:nth-child(3) > a").attr("href")).toEqual(undefined);
@@ -436,7 +436,7 @@ describe("jQuery multi-status bar plugin", function () {
             expect($("#multiStatusBar > table > tbody > tr > td:nth-child(3) > a").attr("href")).toEqual("http://pivotal.github.com/jasmine");
         });
 
-        it("should be possible to update colors", function () {
+        it("should update colors using options", function () {
             expect($("#multiStatusBar > table > tbody > tr > td:nth-child(1)")).toHaveBackgroundColorEqualTo("#D5E5FF");
             expect($("#multiStatusBar > table > tbody > tr > td:nth-child(2)")).toHaveBackgroundColorEqualTo("#FFFF84");
             expect($("#multiStatusBar > table > tbody > tr > td:nth-child(3)")).toHaveBackgroundColorEqualTo("#00CC33");
@@ -454,7 +454,7 @@ describe("jQuery multi-status bar plugin", function () {
             expect($("#multiStatusBar > div > table > tbody > tr:nth-child(3) > td:nth-child(1) > div")).toHaveBackgroundColorEqualTo("#0000FF");
         });
 
-        it("should be possible to update visibility of the legend", function () {
+        it("should update visibility of the legend using options", function () {
             expect($("#multiStatusBar").children("div").length).toEqual(1);
 
             $("#multiStatusBar").multistatusbar('option', 'showLegend', false);
@@ -462,7 +462,7 @@ describe("jQuery multi-status bar plugin", function () {
             expect($("#multiStatusBar").children("div").length).toEqual(0);
         });
 
-        it("should be possible to update visibility of values in the legend", function () {
+        it("should update visibility of values in the legend using options", function () {
             expect($("#multiStatusBar > div > table > tbody > tr:nth-child(1) > td:nth-child(2)").text()).toEqual("NEW");
             expect($("#multiStatusBar > div > table > tbody > tr:nth-child(2) > td:nth-child(2)").text()).toEqual("IN PROGRESS");
             expect($("#multiStatusBar > div > table > tbody > tr:nth-child(3) > td:nth-child(2)").text()).toEqual("FINISHED");
@@ -474,7 +474,7 @@ describe("jQuery multi-status bar plugin", function () {
             expect($("#multiStatusBar > div > table > tbody > tr:nth-child(3) > td:nth-child(2)").text()).toEqual("FINISHED: 10/17");
         });
 
-        it("should be possible to update visibility of values in the bar", function () {
+        it("should update visibility of values in the bar using options", function () {
             expect($("#multiStatusBar > table > tbody > tr > td:nth-child(1)")).toHaveHtml("2");
             expect($("#multiStatusBar > table > tbody > tr > td:nth-child(2)")).toHaveHtml("5");
             expect($("#multiStatusBar > table > tbody > tr > td:nth-child(3)")).toHaveHtml("10");
