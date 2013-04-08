@@ -1,0 +1,28 @@
+{
+    "name": "multistatusbar",
+    "title": "jQuery multi-status-bar plugin",
+    "description": "The ideal bar to monitor the status of multiple objects.",
+    "keywords": [
+        "progress", "bar", "multi", "multiple", "status", "state", "monitor", "monitoring"
+    ],
+    "version": "1.1.0",
+    "author": {
+        "name": "Marc Carre"
+    },
+    "maintainers": [
+        { "name": "Marc Carre" }
+    ],
+    "licenses": [
+        {
+            "type": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        }
+    ],
+    "bugs": "https://github.com/marccarre/jquery-multi-status-bar/issues",
+    "homepage": "https://github.com/marccarre/jquery-multi-status-bar",
+    "docs": "http://marccarre.github.io/jquery-multi-status-bar/",
+    "download": "https://github.com/marccarre/jquery-multi-status-bar/archive/1.1.0.zip",
+    "dependencies": {
+        "jquery": ">=1.8"
+    }
+}

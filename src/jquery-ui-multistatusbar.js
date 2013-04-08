@@ -18,7 +18,7 @@
 (function ($, undefined) {
 
     $.widget("ui-marccarre.multistatusbar", {
-        version: "1.1.1",
+        version: "1.1.0",
         options: {
             width: 200,
             payload: {},
