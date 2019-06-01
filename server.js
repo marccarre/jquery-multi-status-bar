@@ -32,7 +32,7 @@ var app = express();
 app.get('/', function(request, response) {
     var query = url.parse(request.url, true).query;
     console.log('Request: ' + JSON.stringify(query));
-	
+
 	var body = getResponse(query);
     console.log('Response: ' + body);
 
