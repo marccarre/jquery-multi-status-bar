@@ -5,7 +5,7 @@
     "express": "4.17.x"
   },
   "engines": {
-    "node": "0.10.x",
+    "node": "8.1.x",
     "npm": "1.2.x"
   }
 }
