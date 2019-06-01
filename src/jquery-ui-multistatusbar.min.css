@@ -1,5 +1,5 @@
 /*
- * Copyright 2013 Marc CARRE
+ * Copyright 2013-2019 Marc CARRE
  * https://github.com/marccarre/jquery-multi-status-bar
  * Licensed under the Apache License, Version 2.0.
  */
